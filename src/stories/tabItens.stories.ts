@@ -1,7 +1,7 @@
 
 import { Story, Meta } from '@storybook/angular/types-6-0';
 
-import {TabItensComponent, TabItens} from 'src/app/components/tabItens.component';
+import {TabItensComponent} from 'src/app/components/tabItens.component';
 
 export default {
   title: 'Tab/Itens',

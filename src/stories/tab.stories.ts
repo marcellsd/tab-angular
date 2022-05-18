@@ -1,11 +1,10 @@
 
-import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 
 import {TabItensComponent} from 'src/app/components/tabItens.component';
 import {TabComponent} from 'src/app/components/tab.component';
-import { TabItens2 } from './tabItens.stories';
+
 
 export default {
   title: 'Tab/Tab',
@@ -14,7 +13,6 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [TabItensComponent],
-      imports: [CommonModule],
     }),
   ],
 
