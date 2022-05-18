@@ -1,12 +1,16 @@
-import { Component } from "@angular/core"
-import { TabItens} from "./tabItens.component"
+import { Component, Input, OnInit } from "@angular/core"
+import {TabItens} from "./tabItens.component"
+
+export interface Tab{
+    tabsData: {tabName:string; tabText:string}[]
+    currentTab: number
+}
 
 @Component({
     selector: "app-tab",
     template:`
     <app-tabitens
-    [tabNames] = "tabNamesL"
-    [tabTexts] = "tabTextL"
+    [tabsData] = tabsData
     [currentTab] = currentTab
     (onSelection)="select($event)"
     ></app-tabitens>
@@ -14,29 +18,13 @@ import { TabItens} from "./tabItens.component"
 })
 
 export class TabComponent{
-    tabsData = [{
-        tabName: 'tab 1',
-        tabText: 'Texto do primeiro tab'
-    },
-    {
-        tabName: 'tab 2',
-        tabText: 'Texto do segundo tab'
-    },
-    {
-        tabName: 'tab 3',
-        tabText: 'Texto do terceiro tab'
-    },
-    {
-        tabName: 'tab 4',
-        tabText: 'Texto do quarto tab'
-    },
-    ]
-     tabNamesL = this.tabsData.map((tab) => tab.tabName)
-     tabTextL = this.tabsData.map((tab) => tab.tabText)
-     
-     currentTab = 0
-
-     select(tabIndex: number){
-         this.currentTab = tabIndex
-     }
+    @Input() tabsData!: {tabName:string; tabText:string}[]
+    @Input() currentTab!: number
+    tabsNames = this.tabsData.map((tab) => tab.tabName)
+    tabsTexts = this.tabsData.map((tab) => tab.tabText)
+    
+    select(tabIndex: number){
+        this.currentTab = tabIndex
+    }
+    
 }

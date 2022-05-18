@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core"
+import {OnInit} from '@angular/core';
 
 export interface TabItens{
-    tabNames: string[]
-    tabTexts: string[]
-    currentTab: number
+  tabsData: {tabName:string; tabText:string}[]
+  currentTab: number
 }
 
 @Component({
@@ -59,8 +59,20 @@ button {
   `]
 })
 export class TabItensComponent{
-    @Input() tabNames!: string[]
-    @Input() tabTexts!: string[]
+    @Input() tabsData!: {tabName:string; tabText:string}[]
+    tabNames!: string[]
+    tabTexts!: string[]
     @Input() currentTab!: number
-    @Output() onSelection = new EventEmitter<number>()
+    @Output() onSelection = new EventEmitter<number>()    
+   
+  
+  constructor(){
+    this.tabNames = this.tabsData?.map((tab) => tab.tabName)
+    this.tabTexts = this.tabsData?.map((tab) => tab.tabText)
+    }
+  ngOnInit(): void {
+    this.tabNames = this.tabsData?.map((tab) => tab.tabName)
+    this.tabTexts = this.tabsData?.map((tab) => tab.tabText)
+  }
+  
 }
